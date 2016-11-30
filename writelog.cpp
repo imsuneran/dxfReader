@@ -224,3 +224,9 @@ void WriteLogData(char * szLogData){
 #endif*/
 }
 
+void getFileName()
+{
+	bool filechange = false;
+	if(filechage)
+		printf("file change\n");
+}
