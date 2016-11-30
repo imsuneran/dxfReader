@@ -230,3 +230,11 @@ void getFileName()
 	if(filechage)
 		printf("file change\n");
 }
+
+void getFileName1()
+{
+	bool filechange = false;
+	if(filechage)
+		printf("file change\n");
+}
+
