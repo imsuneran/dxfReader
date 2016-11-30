@@ -18,12 +18,12 @@ void RemoveLogFile(char * szLogFile)
 }
 
 /* 
-    ¹¦ÄÜ£º     »ñÈ¡µ±Ç°ÏµÍ³Ê±¼ä 
-    ·µ»ØÖµ£º    0-³É¹¦£¬-1-Ê§°Ü 
-    out:        ±£´æ·µ»ØµÄÏµÍ³Ê±¼ä£¬¸ñÊ½ÓÉfmt¾ö¶¨ 
-    fmt:        0-·µ»Ø£ºyyyy-mm-dd hh24:mi:ss, 1-·µ»Ø£ºyyyy-mm-dd, 2-·µ»Ø£ºhh24:mi:ss 3-·µ»Ø£ºyyyy-mm-dd-1, 4-·µ»Ø£ºyyyy-mm-1,5-·µ»Ø£ºyyyy-mm,
+    åŠŸèƒ½ï¼š     è·å–å½“å‰ç³»ç»Ÿæ—¶é—´ 
+    è¿”å›å€¼ï¼š    0-æˆåŠŸï¼Œ-1-å¤±è´¥ 
+    out:        ä¿å­˜è¿”å›çš„ç³»ç»Ÿæ—¶é—´ï¼Œæ ¼å¼ç”±fmtå†³å®š 
+    fmt:        0-è¿”å›ï¼šyyyy-mm-dd hh24:mi:ss, 1-è¿”å›ï¼šyyyy-mm-dd, 2-è¿”å›ï¼šhh24:mi:ss 3-è¿”å›ï¼šyyyy-mm-dd-1, 4-è¿”å›ï¼šyyyy-mm-1,5-è¿”å›ï¼šyyyy-mm,
 */
-int getTime(char *out, int fmt)                 // »ñÈ¡µ±Ç°ÏµÍ³Ê±¼ä 
+int getTime(char *out, int fmt)                 // è·å–å½“å‰ç³»ç»Ÿæ—¶é—´ 
 { 
     time_t t; 
     struct tm *tp; 
@@ -49,8 +49,8 @@ int getTime(char *out, int fmt)                 // »ñÈ¡µ±Ç°ÏµÍ³Ê±¼ä
     return 0; 
 } 
 
-//É¾³ıÇ°Ò»ÌìÈÕÖ¾£¬²¢´ò¿ª½ñÌìÈÕÖ¾
-FILE* openFileEx(const char *fileName, const char *mode)  // ´ò¿ªÎÄ±¾ÎÄ¼ş 
+//åˆ é™¤å‰ä¸€å¤©æ—¥å¿—ï¼Œå¹¶æ‰“å¼€ä»Šå¤©æ—¥å¿—
+FILE* openFileEx(const char *fileName, const char *mode)  // æ‰“å¼€æ–‡æœ¬æ–‡ä»¶ 
 { 
 	char curTime[100] = {0}; 
 	char LogFile[100] = {0};
@@ -91,7 +91,7 @@ FILE* openFileEx(const char *fileName, const char *mode)  // ´ò¿ªÎÄ±¾ÎÄ¼ş
 } 
 
 
-FILE* openFile(const char *fileName, const char *mode)  // ´ò¿ªÎÄ±¾ÎÄ¼ş 
+FILE* openFile(const char *fileName, const char *mode)  // æ‰“å¼€æ–‡æœ¬æ–‡ä»¶ 
 { 
 
  	FILE *fp = NULL;
@@ -105,14 +105,14 @@ FILE* openFile(const char *fileName, const char *mode)  // ´ò¿ªÎÄ±¾ÎÄ¼ş
 } 
   
 /* 
-    ¹¦ÄÜ£º     ½«strĞ´Èëµ½ÎÄ¼ş 
-    ·µ»ØÖµ£º    Ğ´ÎÄ¼ş³É¹¦·µ»Ø0,·ñÔò·µ»Ø-1 
-    fp:     ÎÄ¼şÖ¸Õë 
-    str:        ´ıĞ´ÈëµÄ×Ö·û´® 
-    bLog:       1-ÊÇÈÕÖ¾ÎÄ¼ş£¬0-²»ÊÇÈÕÖ¾ÎÄ¼ş 
-    ËµÃ÷£º     Èç¹ûÊÇÈÕÖ¾ÎÄ¼ş£¬½«»áÔÚstrÇ°¼ÓÉÏµ±Ç°Ê±¼ä(¸ñÊ½Èç£º2011-04-12 12:10:20) 
+    åŠŸèƒ½ï¼š     å°†strå†™å…¥åˆ°æ–‡ä»¶ 
+    è¿”å›å€¼ï¼š    å†™æ–‡ä»¶æˆåŠŸè¿”å›0,å¦åˆ™è¿”å›-1 
+    fp:     æ–‡ä»¶æŒ‡é’ˆ 
+    str:        å¾…å†™å…¥çš„å­—ç¬¦ä¸² 
+    bLog:       1-æ˜¯æ—¥å¿—æ–‡ä»¶ï¼Œ0-ä¸æ˜¯æ—¥å¿—æ–‡ä»¶ 
+    è¯´æ˜ï¼š     å¦‚æœæ˜¯æ—¥å¿—æ–‡ä»¶ï¼Œå°†ä¼šåœ¨strå‰åŠ ä¸Šå½“å‰æ—¶é—´(æ ¼å¼å¦‚ï¼š2011-04-12 12:10:20) 
 */
-int writeFile(FILE *fp, const char *str, int bLog)          // Ğ´×Ö·û´®µ½ÎÄ¼ş,bLog±íÃ÷ÊÇ·ñÎªÈÕÖ¾ÎÄ¼ş 
+int writeFile(FILE *fp, const char *str, int bLog)          // å†™å­—ç¬¦ä¸²åˆ°æ–‡ä»¶,bLogè¡¨æ˜æ˜¯å¦ä¸ºæ—¥å¿—æ–‡ä»¶ 
 { 
     char curTime[100] = {0}; 
     int ret = -1; 
@@ -122,14 +122,14 @@ int writeFile(FILE *fp, const char *str, int bLog)          // Ğ´×Ö·û´®µ½ÎÄ¼ş,bL
 
     
 // 	wchar_t wc[2048];  
-//     // ½«ANSI±àÂëµÄ¶à×Ö½Ú×Ö·û´®×ª»»³É¿í×Ö·û×Ö·û´®  
+//     // å°†ANSIç¼–ç çš„å¤šå­—èŠ‚å­—ç¬¦ä¸²è½¬æ¢æˆå®½å­—ç¬¦å­—ç¬¦ä¸²  
 //     int n = MultiByteToWideChar(CP_ACP, 0, str, strlen(str), wc, 2048);  
 //     if ( n > 0 )  
 //     {  
 //         wc[n] = 0;  
 // 		
 //         char mb[2048];  
-//         // ½«¿í×Ö·û×Ö·û´®×ª»»³ÉUTF-8±àÂëµÄ¶à×Ö½Ú×Ö·û´®  
+//         // å°†å®½å­—ç¬¦å­—ç¬¦ä¸²è½¬æ¢æˆUTF-8ç¼–ç çš„å¤šå­—èŠ‚å­—ç¬¦ä¸²  
 //         n = WideCharToMultiByte(CP_UTF8, 0, wc, wcslen(wc), mb, 2048, NULL, NULL);  
 //         if ( n > 0 )  
 //         {  
@@ -146,7 +146,7 @@ int writeFile(FILE *fp, const char *str, int bLog)          // Ğ´×Ö·û´®µ½ÎÄ¼ş,bL
 	
 } 
 
-int writeFileW(FILE *fp,const wchar_t *str, int bLog)          // Ğ´×Ö·û´®µ½ÎÄ¼ş,bLog±íÃ÷ÊÇ·ñÎªÈÕÖ¾ÎÄ¼ş 
+int writeFileW(FILE *fp,const wchar_t *str, int bLog)          // å†™å­—ç¬¦ä¸²åˆ°æ–‡ä»¶,bLogè¡¨æ˜æ˜¯å¦ä¸ºæ—¥å¿—æ–‡ä»¶ 
 { 
 	int ret = -1; 
 
@@ -156,7 +156,7 @@ int writeFileW(FILE *fp,const wchar_t *str, int bLog)          // Ğ´×Ö·û´®µ½ÎÄ¼ş
 	int n = 0;
 	{  
 		char mb[2048];  
-		// ½«¿í×Ö·û×Ö·û´®×ª»»³ÉUTF-8±àÂëµÄ¶à×Ö½Ú×Ö·û´®  
+		// å°†å®½å­—ç¬¦å­—ç¬¦ä¸²è½¬æ¢æˆUTF-8ç¼–ç çš„å¤šå­—èŠ‚å­—ç¬¦ä¸²  
 		n = WideCharToMultiByte(CP_UTF8, 0, str, wcslen(str), mb, 2048, NULL, NULL);  
 		if ( n > 0 )  
 		{  
@@ -180,14 +180,14 @@ int closeFile(FILE *fp)
 
 
 /* 
-¹¦ÄÜ£º     ½«strĞ´Èëµ½ÎÄ¼ş 
-·µ»ØÖµ£º    Ğ´ÎÄ¼ş³É¹¦·µ»Ø0,·ñÔò·µ»Ø-1 
-fp:     ÎÄ¼şÖ¸Õë 
-str:        ´ıĞ´ÈëµÄ×Ö·û´® 
-bLog:       1-ÊÇÈÕÖ¾ÎÄ¼ş£¬0-²»ÊÇÈÕÖ¾ÎÄ¼ş 
-ËµÃ÷£º     Èç¹ûÊÇÈÕÖ¾ÎÄ¼ş£¬½«»áÔÚstrÇ°¼ÓÉÏµ±Ç°Ê±¼ä(¸ñÊ½Èç£º2011-04-12 12:10:20) 
+åŠŸèƒ½ï¼š     å°†strå†™å…¥åˆ°æ–‡ä»¶ 
+è¿”å›å€¼ï¼š    å†™æ–‡ä»¶æˆåŠŸè¿”å›0,å¦åˆ™è¿”å›-1 
+fp:     æ–‡ä»¶æŒ‡é’ˆ 
+str:        å¾…å†™å…¥çš„å­—ç¬¦ä¸² 
+bLog:       1-æ˜¯æ—¥å¿—æ–‡ä»¶ï¼Œ0-ä¸æ˜¯æ—¥å¿—æ–‡ä»¶ 
+è¯´æ˜ï¼š     å¦‚æœæ˜¯æ—¥å¿—æ–‡ä»¶ï¼Œå°†ä¼šåœ¨strå‰åŠ ä¸Šå½“å‰æ—¶é—´(æ ¼å¼å¦‚ï¼š2011-04-12 12:10:20) 
 */
-int writeFileEx(FILE *fp, const char *str, int bLog)          // Ğ´×Ö·û´®µ½ÎÄ¼ş,bLog±íÃ÷ÊÇ·ñÎªÈÕÖ¾ÎÄ¼ş 
+int writeFileEx(FILE *fp, const char *str, int bLog)          // å†™å­—ç¬¦ä¸²åˆ°æ–‡ä»¶,bLogè¡¨æ˜æ˜¯å¦ä¸ºæ—¥å¿—æ–‡ä»¶ 
 { 
 
 	char curTime[100] = {0}; 
@@ -196,7 +196,7 @@ int writeFileEx(FILE *fp, const char *str, int bLog)          // Ğ´×Ö·û´®µ½ÎÄ¼ş,
 	if(fp == NULL)
 		return -1;
 
-	if(bLog) // »ñÈ¡µ±Ç°ÏµÍ³Ê±¼ä 
+	if(bLog) // è·å–å½“å‰ç³»ç»Ÿæ—¶é—´ 
 	{ 
 		getTime(curTime, 0); 
 		ret = fprintf(fp, "[%s] %s\n", curTime, str); 
@@ -207,20 +207,20 @@ int writeFileEx(FILE *fp, const char *str, int bLog)          // Ğ´×Ö·û´®µ½ÎÄ¼ş,
 	if(ret >= 0) 
 	{ 
 		fflush(fp); 
-		return 0;               // Ğ´ÎÄ¼ş³É¹¦ 
+		return 0;               // å†™æ–‡ä»¶æˆåŠŸ 
 	} 
 	else
 		return -1; 
 } 
 
 void WriteLogData(char * szLogData){
-#ifdef _DE_BUG_
+/*#ifdef _DE_BUG_
 	FILE * fp = openFileEx("c:\\jylog\\logfile.txt","a+");
 	if(fp)
 	{
 		writeFileEx(fp,szLogData,1);
 		closeFile(fp);
 	}
-#endif
+#endif*/
 }
 
